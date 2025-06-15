@@ -10,3 +10,20 @@ Currently, two official plugins are available:
 ## Expanding the ESLint configuration
 
 If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+
+
+### Requirements
+- Node.js installed
+- npm (Node package manager)
+
+---
+
+###  Install backend dependencies
+
+In the root of the project (where `server.js` and `db.json` are located), run:
+
+```bash
+### npm  npm install -D json-server@0.17.4 json-server-auth 
+
+### node server.js
+### npx json-server-auth db.json --port 3000
