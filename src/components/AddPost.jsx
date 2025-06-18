@@ -142,7 +142,7 @@ function AddPost() {
               <AddPhotoAlternateIcon />
             </Avatar>
 
-            <Typography variant="h5" fontWeight="bold" color="#4b006e">
+            <Typography variant="h5" fontWeight="bold" color="black">
               Add New Post
             </Typography>
 
@@ -209,7 +209,7 @@ function AddPost() {
                 backgroundColor: "black",
                 color: "white",
                 mt: 2,
-                "&:hover": { backgroundColor: "#a855f7" },
+                "&:hover": { backgroundColor: "#262626" },
               }}
               disabled={loading}
             >

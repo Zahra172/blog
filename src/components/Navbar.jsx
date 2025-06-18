@@ -54,7 +54,7 @@ function ResponsiveAppBar() {
   return (
     <AppBar
       position="sticky"
-      sx={{ backgroundColor: "rgba(10, 10, 10, 0.7)", top: 0, zIndex: 1100 }}
+      sx={{ backgroundColor: "rgba(10, 10, 10 )", top: 0, zIndex: 1100 }}
     >
       <Container maxWidth="xl">
         <Toolbar disableGutters>
@@ -134,8 +134,23 @@ function ResponsiveAppBar() {
                   sx={{
                     my: 2,
                     color: "white",
-                    display: "block",
-                    "&:hover": { color: "#c084fc" },
+                    display: "inline-block",
+                    position: "relative",
+                    "&::after": {
+                      content: '""',
+                      position: "absolute",
+                      left: 0,
+                      bottom: -4,
+                      width: "100%",
+                      height: "2px",
+                      backgroundColor: "white",
+                      transform: "scaleX(0)",
+                      transformOrigin: "left",
+                      transition: "transform 0.3s ease",
+                    },
+                    "&:hover::after": {
+                      transform: "scaleX(1)",
+                    },
                   }}
                 >
                   {page}
@@ -154,8 +169,23 @@ function ResponsiveAppBar() {
                     sx={{
                       my: 2,
                       color: "white",
-                      display: "block",
-                      "&:hover": { color: "#c084fc" },
+                      display: "inline-block",
+                      position: "relative",
+                      "&::after": {
+                        content: '""',
+                        position: "absolute",
+                        left: 0,
+                        bottom: -4,
+                        width: "100%",
+                        height: "2px",
+                        backgroundColor: "white",
+                        transform: "scaleX(0)",
+                        transformOrigin: "left",
+                        transition: "transform 0.3s ease",
+                      },
+                      "&:hover::after": {
+                        transform: "scaleX(1)",
+                      },
                     }}
                   >
                     Login
@@ -167,10 +197,24 @@ function ResponsiveAppBar() {
                     onClick={() => navigate("/register")}
                     sx={{
                       my: 2,
-                      color: "black",
-                      display: "block",
-                      backgroundColor: "white",
-                      "&:hover": { backgroundColor: "#c084fc", color: "white" },
+                      color: "white",
+                      display: "inline-block",
+                      position: "relative",
+                      "&::after": {
+                        content: '""',
+                        position: "absolute",
+                        left: 0,
+                        bottom: -4,
+                        width: "100%",
+                        height: "2px",
+                        backgroundColor: "white",
+                        transform: "scaleX(0)",
+                        transformOrigin: "left",
+                        transition: "transform 0.3s ease",
+                      },
+                      "&:hover::after": {
+                        transform: "scaleX(1)",
+                      },
                     }}
                   >
                     Register
@@ -186,8 +230,23 @@ function ResponsiveAppBar() {
                       sx={{
                         my: 2,
                         color: "white",
-                        display: "block",
-                        "&:hover": { color: "#c084fc" },
+                        display: "inline-block",
+                        position: "relative",
+                        "&::after": {
+                          content: '""',
+                          position: "absolute",
+                          left: 0,
+                          bottom: -4,
+                          width: "100%",
+                          height: "2px",
+                          backgroundColor: "white",
+                          transform: "scaleX(0)",
+                          transformOrigin: "left",
+                          transition: "transform 0.3s ease",
+                        },
+                        "&:hover::after": {
+                          transform: "scaleX(1)",
+                        },
                       }}
                     >
                       Logout

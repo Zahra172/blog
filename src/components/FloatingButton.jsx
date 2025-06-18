@@ -15,9 +15,9 @@ export default function FloatingButton() {
         position: "fixed",
         bottom: 16,
         right: 16,
-        backgroundColor: "#c084fc", 
+        backgroundColor: "black", 
         "&:hover": {
-          backgroundColor: "#a855f7", 
+          backgroundColor: "#262626", 
         },
       }}
       onClick={() => navigate('/add-post')}

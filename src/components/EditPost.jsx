@@ -108,7 +108,7 @@ export default function EditPost() {
               <AddPhotoAlternateIcon />
             </Avatar>
 
-            <Typography variant="h5" fontWeight="bold" color="#4b006e">
+            <Typography variant="h5" fontWeight="bold" color="black">
               Edit Post
             </Typography>
 
@@ -125,6 +125,7 @@ export default function EditPost() {
               fullWidth
               label="Author"
               name="author"
+              disabled
               value={post.author}
               onChange={handleChange}
               required
@@ -173,7 +174,7 @@ export default function EditPost() {
                 backgroundColor: "black",
                 color: "white",
                 mt: 2,
-                "&:hover": { backgroundColor: "#a855f7" },
+                "&:hover": { backgroundColor: "#262626" },
               }}
             >
               Submit Post

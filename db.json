@@ -17,6 +17,12 @@
       "password": "$2a$10$N7ajL2rakKHwzGC1Q4jAuOrQhKLz605t1c1WlObvpSmSJBfOYAKmm",
       "name": "zozzy",
       "id": 13
+    },
+    {
+      "email": "emy@hmail.com",
+      "password": "$2a$10$3tojUt1ZAbEYuagRrgtRSuI/5VGoGE.wa5CsvAbITxAF2xsnDZ5Zm",
+      "name": "zahraa",
+      "id": 14
     }
   ],
   "posts": [
@@ -59,6 +65,16 @@
       "date": "6/15/2025",
       "userId": "13",
       "id": 19
+    },
+    {
+      "title": "CSS",
+      "description": "sssssssssssssssssssssssssss",
+      "author": "emy",
+      "image": "https://i.ibb.co/zVHvKYCx/Whats-App-Image-2023-06-20-at-10-47-29-PM.jpg",
+      "imageName": "WhatsApp Image 2023-06-20 at 10.47.29 PM.jpeg",
+      "date": "6/18/2025",
+      "userId": "14",
+      "id": 20
     }
   ]
 }

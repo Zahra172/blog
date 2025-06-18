@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import {
   Container,
@@ -8,11 +8,15 @@ import {
   Box,
   CircularProgress,
   Divider,
+ IconButton,
+
 } from "@mui/material";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import FloatingButton from "./FloatingButton";
 
 
 export default function PostDetails() {
+  let navigate =useNavigate();
   const { id } = useParams();
   const [post, setPost] = useState(null);
 
@@ -25,6 +29,7 @@ export default function PostDetails() {
 
   if (!post) {
     return (
+      
       <Box
         sx={{
           minHeight: "60vh",
@@ -40,7 +45,9 @@ export default function PostDetails() {
 
   return (
     <Container maxWidth="lg" sx={{ mt: 4, mb: 6 }}>
-      
+      <IconButton onClick={() => navigate(-1)} sx={{ mb: 2 }}>
+        <ArrowBackIcon />
+      </IconButton>
       <Box
         component="img"
         src={post.image}

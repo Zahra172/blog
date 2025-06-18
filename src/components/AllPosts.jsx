@@ -5,129 +5,161 @@ import {
   CardHeader,
   CardMedia,
   Container,
-  Grid,
+  Typography,
+  CircularProgress,
   Box,
   Button,
-  Typography,
+  IconButton,
 } from "@mui/material";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+
 import axios from "axios";
-import React, { useState } from "react";
-import { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function AllPosts() {
-    let navigate = useNavigate();
+  let navigate = useNavigate();
   let [posts, setPosts] = useState([]);
+  let [loading, setLoading] = useState(true);
   let users = JSON.parse(localStorage.getItem("user"));
+
   function getAllPosts() {
     axios
       .get("http://localhost:3000/posts")
       .then((apiResponse) => {
-        console.log(apiResponse);
         setPosts(apiResponse.data);
+        setLoading(false);
       })
       .catch((apiResponse) => {
         console.log(apiResponse);
+        setLoading(false);
       });
   }
+
   useEffect(() => {
     getAllPosts();
   }, []);
+
   return (
     <Container sx={{ mt: 4, width: "100%" }}>
-      <Typography variant="h4" gutterBottom>
+      <Typography
+        variant="h4"
+        align="center"
+        fontWeight="bold"
+        sx={{
+          mb: 4,
+          color: "#333",
+          letterSpacing: 1,
+          
+          display: "inline-block",
+          px: 2,
+        }}
+      >
         Blog Posts
       </Typography>
 
-      <Box
-        sx={{
-          display: "flex",
-          flexWrap: "wrap",
-          gap: 3,
-          justifyContent: "center",
-          alignItems: "flex-start", 
-        }}
-      >
-        {posts.map((post) => (
-          <Box
-            key={post.id}
-            sx={{
-              width: {
-                xs: "100%",
-                md: "calc(33.33% - 24px)",
-              },
-              display: "flex",
-              flexDirection: "column",
-            }}
-          >
-            
-            <Card
-            
+      {loading ? (
+        <Box sx={{ display: "flex", justifyContent: "center", mt: 5 }}>
+          <CircularProgress />
+        </Box>
+      ) : (
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            gap: 3,
+            alignItems: "center",
+          }}
+        >
+          {posts.map((post) => (
+            <Box
+              key={post.id}
               sx={{
-                height: "100%",
+                width: {
+                  xs: "100%",
+                  sm: "90%",
+                  md: "70%",
+                },
                 display: "flex",
                 flexDirection: "column",
-                justifyContent: "space-between",
-                borderRadius: 3,
-                boxShadow: 3,
-                backgroundColor: "#fff",
-                padding:"30px 0 0 0"
               }}
             >
+              <Card
+                sx={{
+                  mb:5,
+                  display: "flex",
+                  flexDirection: "column",
+                  borderRadius: 3,
+                  boxShadow: 4,
+                  backgroundColor: "#fff",
+                }}
+              >
+                <CardMedia
+                  component="img"
+                  image={post.image}
+                  alt="Post"
+                  sx={{
+                    height: 250,
+                    objectFit: "cover",
+                  }}
+                />
+
                 <CardHeader
-                avatar={
-                  <Avatar src={`https://i.pravatar.cc/150?u=${post.author}`} />
-                }
-                title={
-                  <Typography variant="subtitle1" fontWeight="bold">
-                    {post.author}
+                  avatar={
+                    <Avatar
+                      src={`https://i.pravatar.cc/150?u=${post.author}`}
+                    />
+                  }
+                  title={
+                    <Typography variant="subtitle1" fontWeight="bold">
+                      {post.author}
+                    </Typography>
+                  }
+                  subheader={post.date}
+                />
+
+                <CardContent>
+                  <Typography variant="h6" fontWeight="bold" gutterBottom>
+                    {post.title}
                   </Typography>
-                }
-                
-                sx={{ pt: 0, mt: -2 }}
-              />
-              <CardMedia
-                component="img"
-                image={post.image}
-                alt="Post"
-                sx={{ height: 200, objectFit: "cover" }}
-              />
 
-              <CardContent sx={{ flexGrow: 1 }}>
+                  <Typography variant="body2" color="text.secondary">
+                    {post.description?.split(" ").slice(0, 20).join(" ")}...
+                    <Button
+                      onClick={() => navigate(`/postDetails/${post.id}`)}
+                      size="small"
+                      variant="text"
+                      sx={{
+                        textTransform: "none",
+                        fontSize: "0.85rem",
+                        ml: 1,
+                        p: 0,
+                        minWidth: "fit-content",
+                      }}
+                    >
+                      See more
+                    </Button>
+                  </Typography>
 
-                
-                <Typography variant="body2" color="text.secondary">
-                  {post.description?.split(" ").slice(0, 20).join(" ")}...
-                  <Button
-                    onClick={() => navigate(`/postDetails/${post.id}`)}
-                    size="small"
-                    variant="text"
-                    sx={{
-                      textTransform: "none",
-                      fontSize: "0.85rem",
-                      ml: 1,
-                      p: 0,
-                      minWidth: "fit-content",
-                    }}
-                  >
-                    See more
-                  </Button>
-                </Typography>
-
-                {/* Author + Date */}
-                <Typography
-                  variant="subtitle2"
-                  sx={{ mt: 2, color: "#333", fontWeight: 500 }}
-                >
-                  By <b>{post.author}</b> • {post.date}
-                </Typography>
-              </CardContent>
-
-              
-            </Card>
-          </Box>
-        ))}
-      </Box>
+                  {/* Reactions Row */}
+                  <Box sx={{ display: "flex", alignItems: "center", mt: 2 }}>
+                    <IconButton>
+                      <FavoriteBorderIcon fontSize="small" />
+                    </IconButton>
+                    
+                    <Typography
+                      variant="caption"
+                      sx={{ ml: "auto", color: "gray" }}
+                    >
+                      6 Reactions
+                    </Typography>
+                  </Box>
+                </CardContent>
+              </Card>
+            </Box>
+          ))}
+        </Box>
+      )}
     </Container>
   );
 }

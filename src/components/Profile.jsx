@@ -12,7 +12,7 @@ import {
   Grid,
   Typography,
   IconButton,
-  Paper,
+  CardHeader
 } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
@@ -54,6 +54,21 @@ export default function Profile() {
 
   return (
     <Container maxWidth="xl" sx={{ mt: 4 }}>
+      <Typography
+              variant="h4"
+              align="center"
+              fontWeight="bold"
+              sx={{
+                mb: 4,
+                color: "#333",
+                letterSpacing: 1,
+                
+                display: "inline-block",
+                px: 2,
+              }}
+            >
+              Profile
+            </Typography>
       <Box sx={{ display: "flex", gap: 3, flexWrap: "wrap" }}>
         {/* Sidebar */}
         <Box
@@ -119,11 +134,25 @@ export default function Profile() {
                   component="img"
                   image={post.image}
                   alt="Post Image"
-                  sx={{ height: 200, objectFit: "cover" }}
+                  sx={{ height: 220, objectFit: "cover" }}
+                />
+
+                <CardHeader
+                  avatar={
+                    <Avatar
+                      src={`https://i.pravatar.cc/150?u=${post.author}`}
+                    />
+                  }
+                  title={
+                    <Typography variant="subtitle1" fontWeight="bold">
+                      {post.author}
+                    </Typography>
+                  }
+                  subheader={post.date}
                 />
 
                 <CardContent sx={{ flexGrow: 1 }}>
-                  <Typography gutterBottom variant="h6">
+                  <Typography gutterBottom variant="h6" fontWeight="bold">
                     {post.title}
                   </Typography>
 
@@ -144,14 +173,10 @@ export default function Profile() {
                     </Button>
                   </Typography>
 
-                  <Typography
-                    variant="subtitle2"
-                    sx={{ mt: 2, color: "#333", fontWeight: 500 }}
-                  >
-                    By <b>{post.author}</b> • {post.date}
-                  </Typography>
+                  
                 </CardContent>
 
+               
                 <CardActions sx={{ justifyContent: "flex-end" }}>
                   <IconButton
                     onClick={() => handleUpdate(post.id)}
