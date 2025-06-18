@@ -13,9 +13,16 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
 // import avatar from "../assets/images/avatar.jpg";
+
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../context/UserContext";
-import { useContext } from "react";
+import { useContext, useState } from "react";
+import {
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+} from "@mui/material";
 
 const pages = ["Home", "Profile"];
 const settings = ["Profile", "Logout"];
@@ -23,9 +30,12 @@ const settings = ["Profile", "Logout"];
 function ResponsiveAppBar() {
   let { userLogin, setUserLogin } = useContext(UserContext);
   const navigate = useNavigate();
+  let [open, setOpen] = useState(false);
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -48,6 +58,7 @@ function ResponsiveAppBar() {
     localStorage.removeItem("userToken");
     setUserLogin(null);
     navigate("/login");
+    setOpen(false);
   };
   const user = JSON.parse(localStorage.getItem("user"));
   const userName = user?.email?.split("@")[0] || "user";
@@ -226,7 +237,7 @@ function ResponsiveAppBar() {
                 <Typography component="span">
                   <Box sx={{ display: { xs: "none", md: "block" } }}>
                     <Button
-                      onClick={logout}
+                      onClick={handleOpen}
                       sx={{
                         my: 2,
                         color: "white",
@@ -253,6 +264,20 @@ function ResponsiveAppBar() {
                     </Button>
                   </Box>
                 </Typography>
+                <Dialog open={open} onClose={handleClose}>
+                  <DialogTitle>Confirm Logout</DialogTitle>
+                  <DialogContent>
+                    <Typography>Are you sure you want to logout?</Typography>
+                  </DialogContent>
+                  <DialogActions>
+                    <Button onClick={handleClose} color="inherit">
+                      Cancel
+                    </Button>
+                    <Button onClick={logout} color="error">
+                      Yes
+                    </Button>
+                  </DialogActions>
+                </Dialog>
                 <Tooltip title="Open settings">
                   <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                     <Avatar

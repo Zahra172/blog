@@ -1,41 +1,13 @@
 {
   "users": [
     {
-      "email": "zahra@gmail.com",
-      "password": "$2a$10$s1KHyd6V9Nk2OKJtI2axL.RQmDdnN6lx2qrU9z4.VTHLOVipZikqi",
-      "name": "zahra",
-      "id": 11
-    },
-    {
       "email": "zaina@gmail.com",
       "password": "$2a$10$u8/UdyoWb08hCB2M50mQFe/ALt2wM/aHqI6/Wr7wAlV0Qb2/OdEgC",
       "name": "zaina",
       "id": 12
-    },
-    {
-      "email": "zozzy@gmail.com",
-      "password": "$2a$10$N7ajL2rakKHwzGC1Q4jAuOrQhKLz605t1c1WlObvpSmSJBfOYAKmm",
-      "name": "zozzy",
-      "id": 13
-    },
-    {
-      "email": "emy@hmail.com",
-      "password": "$2a$10$3tojUt1ZAbEYuagRrgtRSuI/5VGoGE.wa5CsvAbITxAF2xsnDZ5Zm",
-      "name": "zahraa",
-      "id": 14
     }
   ],
   "posts": [
-    {
-      "title": "eeeeeee",
-      "description": "loremLorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
-      "author": "zahra",
-      "image": "https://i.ibb.co/W4wtQdJ3/Screens.png",
-      "imageName": "Screens.png",
-      "date": "6/15/2025",
-      "userId": "11",
-      "id": 16
-    },
     {
       "title": "natural",
       "description": "loremLorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
@@ -44,7 +16,11 @@
       "imageName": "wallpaperflare.com_wallpaper.jpg",
       "date": "6/15/2025",
       "userId": "12",
-      "id": 17
+      "id": 17,
+      "comments": {
+        "userName": "zaina",
+        "text": "eeeeeeeeeeee"
+      }
     },
     {
       "title": "front end ",
@@ -54,27 +30,11 @@
       "imageName": "WhatsApp Image 2023-06-20 at 10.47.29 PM.jpeg",
       "date": "6/15/2025",
       "userId": "12",
-      "id": 18
-    },
-    {
-      "title": "HTML",
-      "description": "loremLorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
-      "author": "zozzy",
-      "image": "https://i.ibb.co/FbGJBJWg/Whats-App-Image-2023-06-20-at-10-45-40-PM.jpg",
-      "imageName": "WhatsApp Image 2023-06-20 at 10.45.40 PM.jpeg",
-      "date": "6/15/2025",
-      "userId": "13",
-      "id": 19
-    },
-    {
-      "title": "CSS",
-      "description": "sssssssssssssssssssssssssss",
-      "author": "emy",
-      "image": "https://i.ibb.co/zVHvKYCx/Whats-App-Image-2023-06-20-at-10-47-29-PM.jpg",
-      "imageName": "WhatsApp Image 2023-06-20 at 10.47.29 PM.jpeg",
-      "date": "6/18/2025",
-      "userId": "14",
-      "id": 20
+      "id": 18,
+      "comments": {
+        "userName": "zaina",
+        "text": "eeeeeeeerrrrrrrrrrrrrrr"
+      }
     }
   ]
 }

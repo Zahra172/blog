@@ -12,7 +12,13 @@ import {
   Grid,
   Typography,
   IconButton,
-  CardHeader
+  CardHeader,
+} from "@mui/material";
+import {
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
 } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
@@ -38,12 +44,22 @@ export default function Profile() {
       .catch((err) => console.log(err));
   }, [userId]);
 
+  let [deletedPost, setDeletedPost] = useState(false); //for confirm deleted post
+  let [postIdDelete ,setPostIdDelete] =useState(null) // to store post id
+
+  const handleOpen = (id) => {
+    setDeletedPost(true);
+    setPostIdDelete(id);
+  };
+
+  const handleClose = () => setDeletedPost(false);
   function deletePost(postId) {
     axios
       .delete(`http://localhost:3000/posts/${postId}`)
       .then(() => {
         const updated = posts.filter((post) => post.id !== postId);
         setPosts(updated);
+        setDeletedPost(false);
       })
       .catch((err) => console.log(err));
   }
@@ -55,20 +71,20 @@ export default function Profile() {
   return (
     <Container maxWidth="xl" sx={{ mt: 4 }}>
       <Typography
-              variant="h4"
-              align="center"
-              fontWeight="bold"
-              sx={{
-                mb: 4,
-                color: "#333",
-                letterSpacing: 1,
-                
-                display: "inline-block",
-                px: 2,
-              }}
-            >
-              Profile
-            </Typography>
+        variant="h4"
+        align="center"
+        fontWeight="bold"
+        sx={{
+          mb: 4,
+          color: "#333",
+          letterSpacing: 1,
+
+          display: "inline-block",
+          px: 2,
+        }}
+      >
+        Profile
+      </Typography>
       <Box sx={{ display: "flex", gap: 3, flexWrap: "wrap" }}>
         {/* Sidebar */}
         <Box
@@ -121,7 +137,7 @@ export default function Profile() {
                   width: {
                     xs: "100%",
                     sm: "calc(50% - 12px)",
-                    md: "calc(33.33% - 16px)",
+                    md: "calc(50% - 16px)",
                   },
                   display: "flex",
                   flexDirection: "column",
@@ -172,11 +188,8 @@ export default function Profile() {
                       See more
                     </Button>
                   </Typography>
-
-                  
                 </CardContent>
 
-               
                 <CardActions sx={{ justifyContent: "flex-end" }}>
                   <IconButton
                     onClick={() => handleUpdate(post.id)}
@@ -184,9 +197,24 @@ export default function Profile() {
                   >
                     <EditIcon />
                   </IconButton>
-                  <IconButton onClick={() => deletePost(post.id)} color="error">
+                  {/* onClick={() => deletePost(post.id)} */}
+                  <IconButton onClick={ ()=> handleOpen(post.id) }  color="error">
                     <DeleteIcon />
                   </IconButton>
+                  <Dialog open={deletedPost} onClose={handleClose}>
+                    <DialogTitle>Confirm Delete</DialogTitle>
+                    <DialogContent>
+                      <Typography>Are you sure you want to delete post?</Typography>
+                    </DialogContent>
+                    <DialogActions>
+                      <Button onClick={handleClose} color="inherit">
+                        Cancel
+                      </Button>
+                      <Button onClick={() => deletePost(postIdDelete)} color="error">
+                        Yes
+                      </Button>
+                    </DialogActions>
+                  </Dialog>
                 </CardActions>
               </Card>
             ))

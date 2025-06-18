@@ -38,7 +38,6 @@ function SignUp() {
   // const userInfo = JSON.parse(localStorage.getItem("userInfo")) || []; //for ckeck local storage
 
   function handleSubmit(values) {
-
     axios
       .post("http://localhost:3000/register", values)
       .then((apiResponse) => {
@@ -47,7 +46,7 @@ function SignUp() {
           // localStorage.setItem("userToken", apiResponse.data.accessToken);
           // setUserLogin(apiResponse.data.accessToken);
           localStorage.setItem("user", JSON.stringify(values));
-          
+
           navigate("/login");
         }
       })

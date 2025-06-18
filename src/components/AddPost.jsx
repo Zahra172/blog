@@ -1,4 +1,4 @@
-import React, {  useState } from "react";
+import React, { useState } from "react";
 import {
   Box,
   Button,
@@ -16,7 +16,6 @@ import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-
 const Input = styled("input")({
   display: "none",
 });
@@ -24,7 +23,7 @@ const Input = styled("input")({
 function AddPost() {
   const [loading, setLoading] = useState(false); //for loading feedback
   const token = localStorage.getItem("userToken");
-  const users = JSON.parse(localStorage.getItem('user'));
+  const users = JSON.parse(localStorage.getItem("user"));
   const payload = JSON.parse(atob(token.split(".")[1]));
   const userId = payload.sub;
   const [post, setPost] = useState({
@@ -46,7 +45,6 @@ function AddPost() {
       formData.append("image", file);
       setLoading(true); // Start loading
 
-
       try {
         const res = await axios.post(
           "https://api.imgbb.com/1/upload",
@@ -66,10 +64,9 @@ function AddPost() {
         }));
       } catch (err) {
         console.error("Image upload failed", err);
-      }finally {
-      setLoading(false); // End loading
-    }
-
+      } finally {
+        setLoading(false); // End loading
+      }
     }
   };
 
@@ -92,6 +89,7 @@ function AddPost() {
       .then((apiResponse) => {
         console.log(apiResponse);
         toast.success("Post added successfully!", {
+          //toast libirary
           className: "custom-toast",
         });
         setPost({
@@ -106,8 +104,6 @@ function AddPost() {
         console.log(apiResponse);
       });
   };
-
-
 
   return (
     <>
@@ -160,7 +156,7 @@ function AddPost() {
               label="Author"
               name="author"
               disabled
-              value={users.email.split('@')[0]}
+              value={users.email.split("@")[0]}
               onChange={handleChange}
               required
             />
@@ -197,7 +193,11 @@ function AddPost() {
                 }}
                 disabled={loading}
               >
-                 {loading ? <CircularProgress size={24} /> : post.imageName || "Upload Image"}
+                {loading ? (
+                  <CircularProgress size={24} />
+                ) : (
+                  post.imageName || "Upload Image"
+                )}
               </Button>
             </label>
 
@@ -217,7 +217,6 @@ function AddPost() {
             </Button>
           </Box>
         </Paper>
-        
       </Container>
     </>
   );

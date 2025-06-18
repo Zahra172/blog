@@ -10,19 +10,34 @@ import {
   Box,
   Button,
   IconButton,
+  DialogContent,
+  DialogActions,
+  DialogContentText,
+  Dialog,
+  DialogTitle,
+  TextField,
 } from "@mui/material";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import MapsUgcIcon from "@mui/icons-material/MapsUgc";
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import AddComment from "./AddComment";
 
 export default function AllPosts() {
   let navigate = useNavigate();
   let [posts, setPosts] = useState([]);
   let [loading, setLoading] = useState(true);
   let users = JSON.parse(localStorage.getItem("user"));
+  const [openPostId, setOpenPstId] = useState(null); //for show comment dialog
 
+  const handleClickOpen = (postId) => {
+    setOpenPstId(postId);
+  };
+  const handleClose = () => {
+    setOpenPstId(null);
+  };
   function getAllPosts() {
     axios
       .get("http://localhost:3000/posts")
@@ -50,7 +65,7 @@ export default function AllPosts() {
           mb: 4,
           color: "#333",
           letterSpacing: 1,
-          
+
           display: "inline-block",
           px: 2,
         }}
@@ -86,7 +101,7 @@ export default function AllPosts() {
             >
               <Card
                 sx={{
-                  mb:5,
+                  mb: 5,
                   display: "flex",
                   flexDirection: "column",
                   borderRadius: 3,
@@ -141,18 +156,35 @@ export default function AllPosts() {
                     </Button>
                   </Typography>
 
-                  {/* Reactions Row */}
+                  {/* reactions */}
                   <Box sx={{ display: "flex", alignItems: "center", mt: 2 }}>
-                    <IconButton>
-                      <FavoriteBorderIcon fontSize="small" />
-                    </IconButton>
                     
-                    <Typography
-                      variant="caption"
-                      sx={{ ml: "auto", color: "gray" }}
+
+                    <IconButton
+                      aria-label="add comment"
+                      color="primary"
+                      onClick={() => handleClickOpen(post.id)}
                     >
-                      6 Reactions
-                    </Typography>
+                      <MapsUgcIcon sx={{ color: "gray" }} />
+                    </IconButton>
+
+                    <Dialog
+                      open={openPostId === post.id}
+                      onClose={handleClose}
+                      fullWidth
+                      maxWidth="sm"
+                    >
+                      <DialogTitle>Comments</DialogTitle>
+                      <DialogContent>
+                        <AddComment post={post} />
+                      </DialogContent>
+                      <DialogActions>
+                        <Button onClick={handleClose} color="primary">
+                          Close
+                        </Button>
+                      </DialogActions>
+                    </Dialog>
+
                   </Box>
                 </CardContent>
               </Card>
