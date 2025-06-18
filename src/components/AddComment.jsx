@@ -7,31 +7,40 @@ export default function AddComment({ post }) {
   const users = JSON.parse(localStorage.getItem("user")); //to know witch user
 
   const [commentText, setCommentText] = useState("");
-  const [comments, setComments] = useState([]); //for add comment
-
+  const [comments, setComments] = useState(post.comments || []); //for add comment
   useEffect(() => {
-    setComments(post.comments || []);
+    axios
+      .get(`http://localhost:3000/posts/${post.id}`)
+      .then((res) => {
+        setComments(res.data.comments || []);
+      })
+      .catch((err) => {
+        console.log("Error fetching comments:", err);
+      });
   }, [post]);
 
   const handleComment = () => {
-    const newComment = {
-      userName: users.email.split("@")[0] || "User",
-      text: commentText,
-    };
-    // let updateComments =[...comments]
-    axios
-      .put(`http://localhost:3000/posts/${post.id}`, {
-        ...post,
-        comments: newComment,
-      })
-      .then((apiResponse) => {
-        console.log(apiResponse.data);
-        setCommentText("");
-        setComments((prev) => [...prev, newComment]);
-      })
-      .catch((apiResponse) => {
-        console.log("error is :", apiResponse);
-      });
+    if (commentText.trim() !== "") {
+      const commentObj = {
+        userName: users.email.split("@")[0] || "User",
+        text: commentText,
+      };
+
+      const updateComments = [...comments, commentObj];
+      axios
+        .put(`http://localhost:3000/posts/${post.id}`, {
+          ...post,
+          comments: updateComments,
+        })
+        .then((apiResponse) => {
+          console.log(apiResponse.data);
+          setComments(updateComments);
+          setCommentText("");
+        })
+        .catch((apiResponse) => {
+          console.log("error is :", apiResponse);
+        });
+    }
   };
 
   return (

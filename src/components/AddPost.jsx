@@ -32,6 +32,7 @@ function AddPost() {
     author: "",
     image: null,
     imageName: "",
+    comments:[]
   });
 
   const handleChange = (e) => {

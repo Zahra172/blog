@@ -17,10 +17,20 @@
       "date": "6/15/2025",
       "userId": "12",
       "id": 17,
-      "comments": {
-        "userName": "zaina",
-        "text": "eeeeeeeeeeee"
-      }
+      "comments": [
+        {
+          "userName": "zaina",
+          "text": "eeeeeeeeeeee"
+        },
+        {
+          "userName": "zaina",
+          "text": "iiiiiiiiiiiiiiii"
+        },
+        {
+          "userName": "zaina",
+          "text": "well done"
+        }
+      ]
     },
     {
       "title": "front end ",
@@ -31,10 +41,44 @@
       "date": "6/15/2025",
       "userId": "12",
       "id": 18,
-      "comments": {
-        "userName": "zaina",
-        "text": "eeeeeeeerrrrrrrrrrrrrrr"
-      }
+      "comments": [
+        {
+          "userName": "zaina",
+          "text": "eeeeeeeerrrrrrrrrrrrrrr"
+        },
+        {
+          "userName": "zaina",
+          "text": "rrrrrrrrrrrrrrrrrrr"
+        },
+        {
+          "userName": "zaina",
+          "text": "wewewe"
+        },
+        {
+          "userName": "zaina",
+          "text": "iiiiiiiiiiiiiiii"
+        }
+      ]
+    },
+    {
+      "title": "skyyyy",
+      "description": "skyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy",
+      "author": "zaina",
+      "image": "https://i.ibb.co/zWtwDtsn/pexels-eberhard-grossgasteiger-1612351.jpg",
+      "imageName": "pexels-eberhard-grossgasteiger-1612351.jpg",
+      "comments": [
+        {
+          "userName": "zaina",
+          "text": "nice img"
+        },
+        {
+          "userName": "zaina",
+          "text": "well done"
+        }
+      ],
+      "date": "6/19/2025",
+      "userId": "12",
+      "id": 19
     }
   ]
 }
