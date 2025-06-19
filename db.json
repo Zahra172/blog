@@ -5,6 +5,12 @@
       "password": "$2a$10$u8/UdyoWb08hCB2M50mQFe/ALt2wM/aHqI6/Wr7wAlV0Qb2/OdEgC",
       "name": "zaina",
       "id": 12
+    },
+    {
+      "email": "dina@gmail.com",
+      "password": "$2a$10$FKgMTzYxq44ZR96p3ked4upu8HYF.L2XThWtkcrb1JSUzvB3aO9Y2",
+      "name": "dina",
+      "id": 13
     }
   ],
   "posts": [
@@ -74,6 +80,10 @@
         {
           "userName": "zaina",
           "text": "well done"
+        },
+        {
+          "userName": "dina",
+          "text": "welll"
         }
       ],
       "date": "6/19/2025",
